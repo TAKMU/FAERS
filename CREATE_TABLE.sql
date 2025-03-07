@@ -89,17 +89,6 @@ CONSTRAINT primaryid
     FOREIGN KEY(primaryid) 
     REFERENCES demo(primaryid));
 
-drop table if exists RPSR;
-create table RPSR
-(
-    primaryid varchar not null,
-    caseid bigint,
-    rpsr_cod varchar,
-CONSTRAINT primaryid
-    FOREIGN KEY(primaryid) 
-    REFERENCES demo(primaryid)
-);
-
 
 drop table if exists RPSR;
 create table RPSR

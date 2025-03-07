@@ -1,0 +1,84 @@
+{
+    "DEMO" : {
+        "primaryid" : "string",
+        "caseid": "Int64",
+        "caseversion" : "Int8",
+        "i_f_code" : "string",
+        "event_dt" : "Int32",
+        "mfr_dt" : "Int32",
+        "init_fda_dt" : "Int32",
+        "fda_dt" : "Int32",
+        "rept_cod" : "string",
+        "auth_num" :  "string",
+        "mfr_num" :  "string",
+        "mfr_sndr" :  "string",
+        "lit_ref" :  "string",
+        "age" :  "float32",
+        "age_cod" :  "string",
+        "age_grp" :  "string",
+        "sex" :  "string",
+        "e_sub" :  "string",
+        "wt" :  "string",
+        "wt_cod" :  "string",
+        "rept_dt" :  "string",
+        "to_mfr" :  "string",
+        "occp_cod" :  "string",
+        "reporter_country" :  "string",
+        "occr_country" :  "string"
+        },
+    "DRUG" : {
+        "primaryid" : "string",
+        "caseid" : "Int64",
+        "drug_seq" : "Int64",
+        "role_cod" : "string",
+        "drugname" : "string",
+        "prod_ai" : "string",
+        "val_vbm" : "Int32", 
+        "route" : "string",
+        "dose_vbm" : "string",
+        "cum_dose_chr" : "float32",
+        "cum_dose_unit" : "string",
+        "dechal" : "string",
+        "rechal" : "string",
+        "lot_num" : "string",
+        "exp_dt" : "string",
+        "nda_num" : "string",
+        "dose_amt" : "string", 
+        "dose_unit" : "string",
+        "dose_form" : "string",
+        "dose_freq" : "string"
+
+    },
+    "INDI" : {
+        "primaryid" : "string",
+        "caseid" : "Int64",
+        "indi_drug_seq" : "Int32", 
+        "indi_pt" : "string"
+    },
+    "OUTC" : {
+        "primaryid" : "string",
+        "caseid" : "Int64",
+        "outc_cod" : "string"
+    },
+    "REAC" : {
+        "primaryid" : "string",
+        "caseid" : "Int64",
+        "pt" : "string", 
+        "drug_rec_act" : "string"
+    },
+
+    "RPSR" : {
+        "primaryid" : "string",
+        "caseid" : "Int64",
+        "rpsr_cod" : "string"
+    },
+    "THER" : {
+        "primaryid" : "string",
+        "caseid" : "Int64",
+        "dsg_drug_seq" : "Int64",
+        "start_dt" : "Int32",
+        "end_dt" : "Int32",
+        "dur" : "string",
+        "dur_cod" : "string"
+    }
+}
