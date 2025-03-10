@@ -48,7 +48,7 @@ To steps to run the scripts are:
     </li>
     <li>
         If you want to host a database with postgresql(please check your server policies like user rights before doing this step):</br>
-        <code>sudo -u postgres createdb faers postgres</code>
+        <code>sudo -u postgres createdb faers postgres</code></br>
         <code>sudo -u postgres psql faers < CREATE_TABLE.sql</code></br>
         Change the variables in script upload_files.sh with your database name and user</br>
         <code>./upload_files.sh</code>
