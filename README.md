@@ -35,7 +35,7 @@ The purpose of this repository is the following:
 ## Versions
 <ol>
     <li><b>v1</b>: Used data obtained in February 2024, and we only considered this scripts to clean data and upload it to postgresql</li>
-    <li><b>v2</b>: To allow people to access the data without Postgresql, we used polars to obtain PRR (prr_polars). As we use polars the processing time is shorter that with the script sql_prr.py</li>
+    <li><b>v2</b>: To allow people to access the data without Postgresql, we used polars to obtain PRR (prr_polars). As we use polars the processing time is shorter than with the script sql_prr.py</li>
 </ol>
 
 ## Processing
