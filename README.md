@@ -1,7 +1,11 @@
 # FAERS
-Download files from FAERS, and prepare data to import to a Postgresql DB.
-
+The purpose of this repository is the following: 
+<ul>
+    <li>Download files from FAERS, and prepare data to import to a Postgresql DB.</li>
+    <li>Obtain PRR of a specific group of drugs like antidepressants, either **local** values (comparing only with the specified group, example prr compared to only antidepressants), or **global** values (comparing with all the drugs of FAERS.</li>
+</ul>
 **Author**: Allan Ken Miyazono Ushijima
+**email**: allan.miyazono@gmail.com
 ## Requirements
 
 <ul>
@@ -21,15 +25,22 @@ Download files from FAERS, and prepare data to import to a Postgresql DB.
     </li>
     <li>Necessary libraries: 
         <ul>
+            <li>polars (v2)</li>
             <li>pandas</li>
             <li>numpy</li>
         </ul>
     </li>
 </ul>
 
+##Versions
+<ol>
+    <li>**v1**: Used data obtained in February 2024, and we only considered this scripts to clean data and upload it to postgresql</li>
+    <li>**v2**: To allow people to access the data without Postgresql, we used polars to obtain PRR (prr_polars). As we use polars the processing time is shorter that with the script sql_prr.py</li>
+</ol>
+
 ## Processing
 
-We took the files from 2014 Q3 to 2023 Q4. The reason is to make use of the field "prod_ai" (product active ingredient), and reduce the need to normalize drug names. If there is a need to change the dates, you can modify the variables in download_script_FAERS.sh script (start_year, start_quarter, end_year, end_quarter). 
+We took the files from 2014 Q3 to 2024 Q4 (v2). The reason is to make use of the field "prod_ai" (product active ingredient), and reduce the need to normalize drug names. If there is a need to change the dates, you can modify the variables in download_script_FAERS.sh script (start_year, start_quarter, end_year, end_quarter). 
 
 To steps to run the scripts are: 
 
@@ -54,4 +65,13 @@ To steps to run the scripts are:
         <code>./upload_files.sh</code>
     </li>
 </ol>
+
+## Limitations
+
+There are some limitations to our approach, as we only modified the data to be able to obtain the PRR. The limitations that we found are the following:
+<ul>
+    <li>The dates cannot be parsed automatically as they are considering different formats: YYYYMMDD, YYYYMM, and YYYY. We didn't process this field to prevent increasing the memory and storage (by dividing them into year, month and day; and parsing the full dates in another column). </li>
+    <li>In DEMO, the units of ages are varied. There are some rows that have entries of a person above the age of 30 years old with units of days or months.</li>
+    <li>In DEMO, the units of weight/mass are varied, and cannot be processed directly. Some of the rows have the unit of mass (example: 70 KG), so it is necessary to first obtain the float and then convert it to required units of mass.</li>
+</ul>
 
