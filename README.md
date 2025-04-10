@@ -4,8 +4,8 @@ The purpose of this repository is the following:
     <li>Download files from FAERS, and prepare data to import to a Postgresql DB.</li>
     <li>Obtain PRR of a specific group of drugs like antidepressants, either **local** values (comparing only with the specified group, example prr compared to only antidepressants), or **global** values (comparing with all the drugs of FAERS.</li>
 </ul>
-**Author** : Allan Ken Miyazono Ushijima
-**email** : allan.miyazono@gmail.com
+<b>Author</b> : Allan Ken Miyazono Ushijima </br>
+<b>email</b> : allan.miyazono@gmail.com
 ## Requirements
 
 <ul>
@@ -34,8 +34,8 @@ The purpose of this repository is the following:
 
 ##Versions
 <ol>
-    <li>**v1**: Used data obtained in February 2024, and we only considered this scripts to clean data and upload it to postgresql</li>
-    <li>**v2**: To allow people to access the data without Postgresql, we used polars to obtain PRR (prr_polars). As we use polars the processing time is shorter that with the script sql_prr.py</li>
+    <li><b>v1</b>: Used data obtained in February 2024, and we only considered this scripts to clean data and upload it to postgresql</li>
+    <li><b>v2</b>: To allow people to access the data without Postgresql, we used polars to obtain PRR (prr_polars). As we use polars the processing time is shorter that with the script sql_prr.py</li>
 </ol>
 
 ## Processing
