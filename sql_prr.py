@@ -38,7 +38,7 @@ def reac_data(drug):
       df = pd.DataFrame(data, columns=column_names)
       df["prod_ai"] = drug
       df = df.groupby(["pt", "prod_ai"])["no_reactions"].sum().reset_index()
-      file_path = f"./drugs/{drug}/adr_real.csv"
+      file_path = f"./data/ad/{drug}_adr.csv"
       df.to_csv(file_path, index=False)
    cursor.close()
    
@@ -78,7 +78,7 @@ try:
             total_reactions_global= df_global["no_events_global"].sum()
             print(total_reactions_global)
          if __name__ == '__main__':
-            pattern = "./drugs/*/adr_real.csv"  
+            pattern = "./data/ad/*_adr.csv"  
             files_to_delete = glob.glob(pattern)
             for file_path in files_to_delete:
                 try:
@@ -86,7 +86,7 @@ try:
                     print(f"Deleted file: {file_path}")
                 except Exception as e:
                     print(f"Error deleting file {file_path}: {e}")
-            study = pd.read_csv("./Antidepressives.csv", low_memory=False, on_bad_lines='skip', encoding_errors='ignore')
+            study = pd.read_csv("./Drugs.csv")
             drugs = study["Drug"].to_list()
 
             with futures.ThreadPoolExecutor() as e:
@@ -94,11 +94,11 @@ try:
                for r in futures.as_completed(f):
                   print(r.result())
             
-            pattern = "./drugs/*/adr_real.csv"  
+            pattern = "./data/ad/*_adr.csv"  
             df = dd.read_csv(pattern)
             df['no_reactions'].astype(int)
             total_reactions_antidep = df["no_reactions"].sum().compute()
-
+            print(f"Total_local: {total_reactions_antidep}")
             # Perform groupby and sum aggregation
             result = df.groupby(['pt'])["no_reactions"].sum().reset_index().compute()
             result = result.rename(columns={'no_reactions': 'total_pt'})
@@ -108,17 +108,19 @@ try:
             result = result.rename(columns={'no_reactions': 'total_events_drug'})
             df_final = df_final.merge(result, on="prod_ai", how="inner")
             df_final = df_final.merge(df_global, on="pt", how="inner")
-            print(df_final.head())
+
 
             # Write result to a CSV file
-            df_final.to_csv("./drugs/adr_summary_real.csv", index=False) 
+            df_final.to_csv("./data/adr_summary_real.csv", index=False) 
             df_final["prr_global"] = (df_final["no_reactions"]/df_final["total_events_drug"])/((df_final["no_events_global"] - df_final["no_reactions"])/(total_reactions_global- df_final["total_events_drug"]))
             df_final["prr_local"] = (df_final["no_reactions"]/df_final["total_events_drug"])/((df_final["total_pt"]- df_final["no_reactions"])/(total_reactions_antidep - df_final["total_events_drug"]))
             df_filtered = df_final.query("no_events_global < total_pt ")
-            print(df_filtered.head())
-            df_filtered.to_csv("errors.csv", index=False)
-            df_final.to_csv("prr_real_test.csv", index=False)
+            #df_filtered.to_csv("./data/errors_antipsicotic.csv", index=False)
+            df_final.to_csv("./data/prr_ad.csv", index=False)
+            print(total_reactions_antidep)
+            print(total_reactions_global)
             connection.close()
+
 except Exception as error:
     print ("Connection Failed")
     print(error)

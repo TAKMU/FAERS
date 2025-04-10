@@ -1,16 +1,27 @@
-import pandas as pd
+import polars as pl
 import json
+import multiprocessing as mp
 
-with open("dtype_FAERS.json", "r") as f:
-    dtypes = json.load(f)
+num_processes = 8
+# Load data types (Polars expects Python types like str, int, float)
+with open("dtype_FAERS_pl.json", "r") as f:
+    raw_dtypes = json.load(f)
+
+# Convert to Polars dtypes
+dtypes = {
+    file_type: {col: getattr(pl, dtype) for col, dtype in schema.items()}
+    for file_type, schema in raw_dtypes.items()
+}
 
 if __name__ == '__main__':
-    demo_file = "data/DEMO.csv"
-    df = pd.read_csv(demo_file, 
-                     low_memory=False, 
-                     on_bad_lines='skip', 
-                     encoding_errors="ignore", 
-                     dtype=dtypes["DEMO"])
-    df = df.drop_duplicates(subset=["primaryid"])
-    df.to_csv(demo_file, na_rep='NULL', index=False)
+    demo_file = "data/DEMO_new.csv"
+    df = pl.read_csv(
+            demo_file,
+            encoding="utf8-lossy",
+            schema=dtypes["DEMO"],
+            ignore_errors=True,
+            truncate_ragged_lines = True
+        )
+    df =df.unique(subset=["primaryid"], keep="last")
+    df.write_csv(demo_file)
       

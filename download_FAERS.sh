@@ -25,7 +25,7 @@ export -f download_and_extract
         
 start_year=2014
 start_quarter=3
-end_year=2023
+end_year=2024
 end_quarter=4
 mkdir -p data && cd data
 
