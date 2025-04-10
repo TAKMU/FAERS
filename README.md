@@ -86,3 +86,24 @@ There are some limitations to our approach, as we only modified the data to be a
     <li>In DEMO, the units of weight/mass are varied, and cannot be processed directly. Some of the rows have the unit of mass (example: 70 KG), so it is necessary to first obtain the float and then convert it to required units of mass.</li>
 </ul>
 
+## Scripts and Files
+
+<ul>
+    <li><b>CREATE_TABLE.sql :</b> This SQL script creates the table for PostgreSQL. This is not necessary if you are not planning to upload the dataset to PostgreSQL.</li>
+    <li><b>DB_drop_du.py:</b> This script deletes duplicates that are found in DEMO, considering primaryid.</li>
+    <li><b>DB_merge.py:</b> This script merges all the quarters' files into their respective file (DEMO, REAC, DRUG, INDI, OUTC, RPSR, THER).</li>
+    <li><b>download_FAERS.sh:</b> This bash script downloads FAERS and extracts the necessary file (ASCII).</li>
+    <li><b>Drugs.csv:</b> This csv file is used for the input of prr_polars.py and sql_prr.py. The csv contains a list of drugs that will be used to obtain their adverse effects along with their respective local and global PRRs. </li>
+    <li><b>dtype_FAERS_pl.json:</b> This json file is to specify the dtypes of the csv files, to prevent any issues with typing when importing to dataframes. </li>
+    <li><b>environment.yml:</b> This yml file is to help download the proper python libraries </li>
+    <li><b>prr_polars.py:</b> This script is used to obtain the PRR and adverse effects of a specific group of drugs listed in <b><i>Drugs.csv</i></b>. </li>
+    <li><b>script_python.sh:</b> This bash script runs the python scripts that are necessary to merge and clean the csv files. </li>
+    <li><b>sql_prr.py (v1):</b> This script (version 1) is used to obtain the PRR and adverse effects of a specific group of drugs listed in <b><i>Drugs.csv</i></b> by connecting to a PostgreSQL server. </li>
+    <li><b>upload_files.sh (v1):</b> This script (version 1) is used to upload the csv files to a PostgreSQL server. </li>
+    
+    
+    
+    
+    
+    
+</ul>
