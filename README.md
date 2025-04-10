@@ -32,10 +32,10 @@ The purpose of this repository is the following:
     </li>
 </ul>
 
-## Versions
+##Versions
 <ol>
     <li><b>v1</b>: Used data obtained in February 2024, and we only considered this scripts to clean data and upload it to postgresql</li>
-    <li><b>v2</b>: To allow people to access the data without Postgresql, we used polars to obtain PRR (prr_polars). As we use polars the processing time is shorter than with the script sql_prr.py</li>
+    <li><b>v2</b>: To allow people to access the data without Postgresql, we used polars to obtain PRR (prr_polars). As we use polars the processing time is shorter that with the script sql_prr.py</li>
 </ol>
 
 ## Processing
@@ -63,10 +63,14 @@ To steps to run the scripts are:
         <code>sudo -u postgres psql faers < CREATE_TABLE.sql</code></br>
         Change the variables in script upload_files.sh with your database name and user</br>
         <code>./upload_files.sh</code>
-    </li>
+    </li>   
     <li>
-        Run script prr_polars to obtain the values of PRR (v2), it is faster than sql_prr.py</br>
-        <code>python prr_polars</code>
+        To obtain the prr of the group of drugs, update Drugs.csv</br>
+        <code>nano Drugs.csv</code>
+    </li>   
+    <li>
+        Run polars script to obtain prr</br>
+        <code>python prr_polars.py</code>
     </li>
 </ol>
 
