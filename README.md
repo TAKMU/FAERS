@@ -32,7 +32,7 @@ The purpose of this repository is the following:
     </li>
 </ul>
 
-##Versions
+## Versions
 <ol>
     <li><b>v1</b>: Used data obtained in February 2024, and we only considered this scripts to clean data and upload it to postgresql</li>
     <li><b>v2</b>: To allow people to access the data without Postgresql, we used polars to obtain PRR (prr_polars). As we use polars the processing time is shorter that with the script sql_prr.py</li>
@@ -45,6 +45,9 @@ We took the files from 2014 Q3 to 2024 Q4 (v2). The reason is to make use of the
 To steps to run the scripts are: 
 
 <ol>
+    <li>Create conda environment. </br>
+        <code>conda env create --file environment.yml</code>
+    </li>
     <li>
         Change rights to be able to execute the script:</br>
         <code>chmod +x ./download_FAERS.sh ./script_python.sh ./upload_files.sh</code>
