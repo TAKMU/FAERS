@@ -2,7 +2,7 @@
 The purpose of this repository is the following: 
 <ul>
     <li>Download files from FAERS, and prepare data to import to a Postgresql DB.</li>
-    <li>Obtain PRR of a specific group of drugs like antidepressants, either **local** values (comparing only with the specified group, example prr compared to only antidepressants), or **global** values (comparing with all the drugs of FAERS.</li>
+    <li>Obtain PRR of a specific group of drugs like antidepressants, either <b>local</b> values (comparing only with the specified group, example prr compared to only antidepressants), or <b>global</b> values (comparing with all the drugs of FAERS.</li>
 </ul>
 <b>Author</b> : Allan Ken Miyazono Ushijima </br>
 <b>email</b> : allan.miyazono@gmail.com
